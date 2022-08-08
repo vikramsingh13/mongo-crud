@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <div className="app-container">
         <div className="app-heading">
-
+            Task Manager
         </div>
         <div className="app-insert-form">
             <label className="app-label">Task Name:</label>
