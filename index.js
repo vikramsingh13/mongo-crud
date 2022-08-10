@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
-const path = required('path');
+const path = require('path');
 
 const TaskModel = require('./models/Task');
 
