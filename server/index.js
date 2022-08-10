@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
-const Task = require('./models/Task');
+
+const TaskModel = require('./models/Task');
 
 const app = express();
 app.use(express.json());
@@ -18,17 +19,27 @@ mongoose.connect(
     console.log("Connection to MongoDB atlas was successful");
 });
 
-app.post('/insert', (req, res) => {
-    const task = new Task({taskName: "todo"});
+app.post('/insert', async(req, res) => {
+    const TaskName = req.body.taskName;
+    const task = new TaskModel({taskName: TaskName});
     try{
-        task.save();
-        console.log("Task saved. ");
+        await task.save();
+        console.log("Task saved: ", TaskName);
     }catch(err){
         console.warn("Error saving: ", err);
     }
 });
 
-app.listen(3001, '0.0.0.0', 50, ()=> {
+app.get('/read', async(req, res) => {
+    TaskModel.find({}, (err, response) =>{
+        if(err){
+            res.send(err);
+        }
+        res.send(response);
+    });
+});
+
+app.listen(3001, ()=> {
     console.log("Express server listening on port: 3001 / 0.0.0.0");
 });
 

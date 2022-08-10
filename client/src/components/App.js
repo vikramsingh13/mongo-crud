@@ -1,10 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './App.css';
+import TaskList from './TaskList';
 
-function App() {
+const App = () => {
     const [taskName, setTaskName] = useState('');
+    const [taskList, setTaskList] = useState([]);
 
+    const getTasks = async() => {
+        try{
+            await axios.get(
+                'http://localhost:3001/read'
+            ).then((response) => {
+                setTaskList(response.data);
+            });
+        }catch(err){
+            console.warn("Axios get error: ", err);
+        }
+    };
     const addTask = async() => {
         try{
             await axios.post(
@@ -17,6 +30,11 @@ function App() {
             console.warn("Axios post error: ", err);
         }
     };
+
+    //gets the tasks from the backend and adds to state
+    useEffect(()=>{
+        getTasks();
+    }, []);
 
     return (
         <div className="App">
@@ -38,6 +56,8 @@ function App() {
                         Add Task
                     </button>
                 </div>
+
+                <TaskList taskList={taskList}/>
             </div>
         </div>
     );
