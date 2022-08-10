@@ -30,13 +30,16 @@ const connectDB = async () => {
 //connecting to mongo db
 connectDB();
 
+
 app.use(express.static(path.join(__dirname, "client", "build")));
+/*
 app.get("/api", async(req, res) => {
     res.send({message: "api request"});
 });
 app.get("*", async(req,res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
+*/
 
 app.post('/insert', async(req, res) => {
     const TaskName = req.body.taskName;

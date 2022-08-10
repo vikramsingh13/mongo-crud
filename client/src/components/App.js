@@ -9,11 +9,9 @@ const App = () => {
 
     const getTasks = async() => {
         try{
-            console.log("axios get req");
             await axios.get(
-                'http://mongo-crud.vikramsingh.tech/read'
+                'http://localhost:3001/read'
             ).then((response) => {
-                console.log("axios get req success");
                 setTaskList(response.data);
             });
         }catch(err){
@@ -23,7 +21,7 @@ const App = () => {
     const addTask = async() => {
         try{
             await axios.post(
-                'http://mongo-crud.vikramsingh.tech/insert', 
+                'http://localhost:3001/insert', 
                 {
                     taskName: taskName,
                 }
