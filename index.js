@@ -8,6 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const PORT = process.env.PORT || 3001;
+
 mongoose.connect(
     "mongodb+srv://admin:LetMeMongo1337@cluster0.p0md3ko.mongodb.net/tasksData?retryWrites=true&w=majority",
     {
@@ -39,8 +41,8 @@ app.get('/read', async(req, res) => {
     });
 });
 
-app.listen(3001, ()=> {
-    console.log("Express server listening on port: 3001 / 0.0.0.0");
+app.listen(PORT, ()=> {
+    console.log(`Express server listening on port: ${PORT}`);
 });
 
 //export express api for vercel
