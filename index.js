@@ -11,16 +11,24 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3001;
 
-mongoose.connect(
-    "mongodb+srv://admin:LetMeMongo1337@cluster0.p0md3ko.mongodb.net/tasksData?retryWrites=true&w=majority",
-    {
-        useNewUrlParser: true,
+//asynchonous mongodb connection
+const connectDB = async () => {
+    try{
+        await mongoose.connect(
+            "mongodb+srv://admin:LetMeMongo1337@cluster0.p0md3ko.mongodb.net/tasksData?retryWrites=true&w=majority",
+            {
+                useNewUrlParser: true,
+            }
+        );
+
+        console.log("Connection to MongoDB atlas was successful");
     }
-).catch(err => {
-    console.warn("Connection Error: ", err);
-}).then(() => {
-    console.log("Connection to MongoDB atlas was successful");
-});
+    catch(err) {
+        console.warn("Connection Error: ", err);
+    }
+};
+//connecting to mongo db
+connectDB();
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 app.get("/api", async(req, res) => {
