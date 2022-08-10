@@ -36,9 +36,6 @@ app.use(express.static(path.join(__dirname, "client", "build")));
 app.get("/api", async(req, res) => {
     res.send({message: "api request"});
 });
-app.get("*", async(req,res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
 */
 
 app.post('/insert', async(req, res) => {
@@ -59,6 +56,10 @@ app.get('/read', async(req, res) => {
         }
         res.send(response);
     });
+});
+
+app.get("/*", async(req,res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 app.listen(PORT, ()=> {
