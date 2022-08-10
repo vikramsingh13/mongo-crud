@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
+const path = required('path');
 
 const TaskModel = require('./models/Task');
 
@@ -19,6 +20,14 @@ mongoose.connect(
     console.warn("Connection Error: ", err);
 }).then(() => {
     console.log("Connection to MongoDB atlas was successful");
+});
+
+app.use(express.static(path.join(__dirname, "client", "build")));
+app.get("/api", async(req, res) => {
+    res.send({message: "api request"});
+});
+app.get("*", async(req,res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 app.post('/insert', async(req, res) => {
