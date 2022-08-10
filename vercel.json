@@ -9,7 +9,7 @@
     "routes": [
         {
           "src": "/(.*)",
-          "dest": "./client/public/index.html"
+          "dest": "/client/public/index.html"
         }
     ]
   }
