@@ -10,7 +10,7 @@ const App = () => {
     const getTasks = async() => {
         try{
             await axios.get(
-                '/read'
+                'http://mongo-crud.vikramsingh.tech/read'
             ).then((response) => {
                 setTaskList(response.data);
             });
@@ -21,7 +21,7 @@ const App = () => {
     const addTask = async() => {
         try{
             await axios.post(
-                '/insert', 
+                'http://mongo-crud.vikramsingh.tech/insert', 
                 {
                     taskName: taskName,
                 }
