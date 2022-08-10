@@ -9,9 +9,11 @@ const App = () => {
 
     const getTasks = async() => {
         try{
+            console.log("axios get req");
             await axios.get(
                 'http://mongo-crud.vikramsingh.tech/read'
             ).then((response) => {
+                console.log("axios get req success");
                 setTaskList(response.data);
             });
         }catch(err){
