@@ -15,7 +15,22 @@ app.use(express.urlencoded({extended: false}));
 
 app.use('/api/tasks', require("./routes/taskRoutes"));
 
+//serving static frontend for production
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname, 'client', 'build')));
 
+    app.get('*', (req, res)=>{
+        res.sendFile(
+            path.resolve(__dirname, 'client', 'build', 'index.html')
+        );
+    })
+} else {
+    app.get('/', (req, res) => {
+        res.send('Please set to production.');
+    });
+}
+
+//custom errorHandler
 app.use(errorHandler);
 
 app.listen(PORT, (err)=>{
