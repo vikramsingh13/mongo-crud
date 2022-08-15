@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
-const taskSchema = mongoose.Schema({
+const taskSchema = new mongoose.Schema({
     taskTitle: {
         type: String,
         required: [true, 'Please send a taskTitle.'],
     },
+}, {
+    timestamps: true,
 });
 
-module.exports = mongoose.Model('Task', taskSchema);
+module.exports = mongoose.model('Task', taskSchema);

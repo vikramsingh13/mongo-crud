@@ -6,11 +6,12 @@ const connectDB = require('./config/db');
 
 const PORT = process.env.PORT || 3001;
 
+//connecting to mongodb atlas
+connectDB();
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-
-connectDB();
 
 app.use('/api/tasks', require("./routes/taskRoutes"));
 
