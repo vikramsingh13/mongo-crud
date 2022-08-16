@@ -2,15 +2,11 @@ import React from 'react';
 import './TaskCard.css';
 
 const TaskCard = (props) => {
-    //onclick functions for task controls
-    //delete
-
-
     return (
         <div className='task-card'>
             <div className='task-info'>
                 <div className='task-name'>
-                    {props.task._id}
+                    {props.task.taskTitle}
                 </div>
                 <div className='task-description'>
                     This is task description.

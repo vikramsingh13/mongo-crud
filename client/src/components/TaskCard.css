@@ -1,22 +1,31 @@
-.task-card, .task-info, .task-controls{
+.task-card{
     display: flex;
     align-items: center;
+    flex-direction: row;
     justify-content: center;
     margin: 10px;
 }
 
 .task-card{
     border: 2px solid black;
-    width: 60%;
+    margin: 10px 15%;
+    border-radius: 5px;
 }
 
 .task-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     line-height: 30px;
+    margin: 10px;
 }
 
 .task-controls{
-    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
 }
 
 .task-controls>button{

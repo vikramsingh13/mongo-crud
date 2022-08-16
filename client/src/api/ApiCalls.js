@@ -11,25 +11,40 @@ const getTasks = async() => {
             }
         );
     }catch (err){
-        console.warn(`Axios get error: ${err.message}`);
+        console.warn(`Axios getTasks error: ${err.message}`);
     }
 
     return taskList;
 }
 
-const deleteTask = async(id) => {
-    
-    const deleteTaskURI = API_ENDPOINT + id;
-    let taskDeletedRes = null;
+const addTask = async(taskTitle) => {
+    try{
+        await axios.post(API_ENDPOINT, {
+            taskTitle: taskTitle,
+        });
+    }catch(err){
+        console.warn(`Axios addTask error: ${err.message}`);
+    }
+}
+
+const updateTask = async(id, taskTitle) => {
+    const updateTaskURI = API_ENDPOINT + id;
     try {
-        taskDeletedRes = await axios.delete(deleteTaskURI);
-        console.log("delete task called for : ", id);
-        console.log(taskDeletedRes);
+        await axios.put(updateTaskURI,{
+            taskTitle: taskTitle,
+        });
+    } catch(err){
+        console.warn(`Axios updateTask error: ${err.message}`);
+    }
+}
+
+const deleteTask = async(id) => {
+    const deleteTaskURI = API_ENDPOINT + id;
+    try {
+        await axios.delete(deleteTaskURI);
     }catch(err){
         console.warn(`deleteTask error: ${err.message}`);
     }
-
-    return taskDeletedRes;
 }
 
-export {getTasks, deleteTask };
+export {getTasks, addTask, updateTask, deleteTask };
