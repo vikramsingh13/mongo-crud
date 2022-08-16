@@ -16,7 +16,9 @@ const App = () => {
 
     return (
         <div>
-            <TaskList tasks={tasks}/>
+            <TaskList 
+                tasks={tasks}
+            />
         </div>
     );
 };
