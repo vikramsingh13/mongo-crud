@@ -2,6 +2,10 @@ import React from 'react';
 import './TaskCard.css';
 
 const TaskCard = (props) => {
+    //onclick functions for task controls
+    //delete
+
+
     return (
         <div className='task-card'>
             <div className='task-info'>
@@ -16,9 +20,20 @@ const TaskCard = (props) => {
                 </div>
             </div>
             <div className='task-controls'>
-                <button type="button">Edit</button>
+                <button 
+                    type="button"
+                    id={props.task._id}
+                >
+                    Edit
+                </button>
                 <button type="button">Complete</button>
-                <button type="button">Delete</button>
+                <button 
+                    type="button"
+                    id={props.task._id}
+                    onClick={(event) => {props.deleteTask(event.target.id)}}
+                >
+                    Delete
+                </button>
             </div>
         </div>
     );

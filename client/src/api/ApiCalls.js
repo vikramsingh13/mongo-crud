@@ -17,4 +17,19 @@ const getTasks = async() => {
     return taskList;
 }
 
-export default getTasks;
+const deleteTask = async(id) => {
+    
+    const deleteTaskURI = API_ENDPOINT + id;
+    let taskDeletedRes = null;
+    try {
+        taskDeletedRes = await axios.delete(deleteTaskURI);
+        console.log("delete task called for : ", id);
+        console.log(taskDeletedRes);
+    }catch(err){
+        console.warn(`deleteTask error: ${err.message}`);
+    }
+
+    return taskDeletedRes;
+}
+
+export {getTasks, deleteTask };

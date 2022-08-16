@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TaskList from './components/TaskList';
-import getTasks from './api/ApiCalls';
+import {getTasks, deleteTask} from './api/ApiCalls';
 
 
 const App = () => {
@@ -14,10 +14,13 @@ const App = () => {
         callApi();
     }, []);
 
+
+
     return (
         <div>
             <TaskList 
                 tasks={tasks}
+                deleteTask={deleteTask}
             />
         </div>
     );
