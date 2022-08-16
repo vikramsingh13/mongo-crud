@@ -1,17 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskList from './components/TaskList';
-import getTasks from './components/ApiCalls';
+import getTasks from './api/ApiCalls';
 
-const apiCalls = async() => {
-    const tasks = await getTasks();
-    console.log(tasks);
-}
 
 const App = () => {
-    apiCalls();
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+        const callApi = async() =>{
+            const taskList = await getTasks();
+            setTasks(taskList.data);
+        };
+        callApi();
+    }, []);
+
     return (
         <div>
-            <TaskList />
+            <TaskList tasks={tasks}/>
         </div>
     );
 };
