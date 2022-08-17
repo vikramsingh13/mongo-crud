@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
-import { updateTask } from '../api/ApiCalls';
 import './TaskCard.css';
 
 const TaskCard = (props) => {
     const [editTitle, setEditTitle] = useState('');
     const [isEditVisible, setIsEditVisible] = useState(false);
+    const [isComplete, setIsComplete] = useState(false);
+
     return (
         <div className='task-card'>
-            <div className='task-info'>
+            <div className={`task-info ${isComplete?"task-complete":""}`}>
                 <div className='task-title'>
                     {props.task.taskTitle}
                 </div>
@@ -26,7 +27,12 @@ const TaskCard = (props) => {
                 >
                     Edit
                 </button>
-                <button type="button">Complete</button>
+                <button 
+                    type="button"
+                    onClick={()=>setIsComplete(!isComplete)}
+                >
+                    Complete
+                </button>
                 <button 
                     type="button"
                     id={props.task._id}

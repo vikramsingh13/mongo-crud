@@ -24,13 +24,6 @@ const App = () => {
         setTasks(taskList.data);
     }
 
-    //takes id of task
-    //updates task with crossing out the title and desc
-    const completeTask = (id) => {
-        //todo
-        //utilizes updateTask
-    }
-
     //takes string as taskTitle
     //calls addTask
     //updates list with updateTasksList

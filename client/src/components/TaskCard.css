@@ -48,3 +48,7 @@
 .task-edit-hidden{
     display: none;
 }
+
+.task-complete{
+    text-decoration: line-through;
+}
