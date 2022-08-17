@@ -23,7 +23,7 @@ const addTask = async(taskTitle) => {
             taskTitle: taskTitle,
         });
     }catch(err){
-        console.warn(`Axios addTask error: ${err.message}`);
+        console.warn(`Axios addTask error: ${err}`);
     }
 }
 

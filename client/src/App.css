@@ -3,4 +3,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
+}
+
+.app-container>div{
+    margin: 20px;
 }

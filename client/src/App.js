@@ -20,7 +20,8 @@ const App = () => {
     //updates the tasks in state
     //called everytime a task is added, updated, deleted, etc. 
     const updateTasksList = async() =>{
-        //todo
+        const taskList = await getTasks();
+        setTasks(taskList.data);
     }
 
     //takes id of task
@@ -30,13 +31,40 @@ const App = () => {
         //utilizes updateTask
     }
 
+    //takes string as taskTitle
+    //calls addTask
+    //updates list with updateTasksList
+    const addTaskAndUpdateList = async(taskTitle) => {
+        await addTask(taskTitle);
+        await updateTasksList();
+    }
+
+    //takes string as id, string as taskTitle
+    //calls updateTask
+    //updates list with updateTasksList
+    const updateTaskAndUpdateList = async(id, taskTitle) => {
+        await updateTask(id, taskTitle);
+        await updateTasksList();
+    }
+
+    //takes string as id
+    //calls deleteTask
+    //updates list with updateTasksList
+    const deleteTaskAndUpdateList = async(id) => {
+        await deleteTask(id);
+        await updateTasksList();
+    }
+
     return (
         <div className='app'>
             <div className="app-container">
-                <TaskAdd />
+                <div className='app-title'>
+                    CRUD with MongoDB, expressJS and reactJS
+                </div>
+                <TaskAdd addTask={addTaskAndUpdateList}/>
                 <TaskList 
                     tasks={tasks}
-                    deleteTask={deleteTask}
+                    deleteTask={deleteTaskAndUpdateList}
                 />
             </div>
         </div>
