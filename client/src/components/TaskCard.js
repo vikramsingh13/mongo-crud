@@ -1,5 +1,10 @@
 import React, {useState} from 'react';
 import './TaskCard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faCircleCheck, faCircleXmark, faPen} from "@fortawesome/free-solid-svg-icons";
+
+library.add(faCircleCheck, faCircleXmark, faPen);
 
 const TaskCard = (props) => {
     const [editTitle, setEditTitle] = useState('');
@@ -20,26 +25,26 @@ const TaskCard = (props) => {
                 </div>
             </div>
             <div className='task-controls'>
-                <button 
+                <FontAwesomeIcon
+                    className='task-controls-edit'
+                    icon="pen"
                     type="button"
                     id={props.task._id}
                     onClick={()=>setIsEditVisible(!isEditVisible)}
-                >
-                    Edit
-                </button>
-                <button 
+                />
+                <FontAwesomeIcon
+                    className='task-controls-complete'
+                    icon="circle-check"
                     type="button"
                     onClick={()=>setIsComplete(!isComplete)}
-                >
-                    Complete
-                </button>
-                <button 
+                />
+                <FontAwesomeIcon
+                    className='task-controls-delete'
+                    icon="circle-xmark"
                     type="button"
                     id={props.task._id}
                     onClick={(event) => {props.deleteTask(event.target.id)}}
-                >
-                    Delete
-                </button>
+                />
             </div>
             <div 
                 className={`task-edit ${!isEditVisible?"task-edit-hidden":""}`}
@@ -68,7 +73,7 @@ const TaskCard = (props) => {
                         setIsEditVisible(false);
                     }}
                 >
-                    Edit Task
+                    Confirm Edit
                 </button>
             </div>
 

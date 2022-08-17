@@ -3,13 +3,11 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-        ". . controls controls"
+        ". . . controls"
         "info info info info"
         "edit edit edit edit";
-}
-
-.task-card{
-    border: 2px solid black;
+    
+    border: 2px solid white;
     margin: 10px 15%;
     border-radius: 5px;
 }
@@ -20,7 +18,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    line-height: 30px;
+    line-height: 1rem;
     margin: 10px;
 }
 
@@ -32,9 +30,19 @@
     margin: 10px;
 }
 
-.task-controls>button{
+.task-controls> *{
     margin: 5px;
-    line-height: 30px;
+    font-size: .8rem;
+}
+
+.task-controls-edit{
+    color: rgb(87, 199, 233);
+}
+.task-controls-complete{
+    color: rgb(86, 243, 86);
+}
+.task-controls-delete{
+    color: red;
 }
 
 .task-edit{
