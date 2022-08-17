@@ -65,6 +65,7 @@ const App = () => {
                 <TaskList 
                     tasks={tasks}
                     deleteTask={deleteTaskAndUpdateList}
+                    updateTask={updateTaskAndUpdateList}
                 />
             </div>
         </div>

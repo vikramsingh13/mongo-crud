@@ -9,7 +9,8 @@ const TaskList = (props) => {
         return <TaskCard 
             task={task} 
             key={task._id} 
-            deleteTask={props.deleteTask} 
+            deleteTask={props.deleteTask}
+            updateTask={props.updateTask}
         />
     });
     return(

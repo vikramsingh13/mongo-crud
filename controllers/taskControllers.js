@@ -39,7 +39,6 @@ const updateTask = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Please send a taskTitle');
     }
-
     const updatedTask = await taskModel.findByIdAndUpdate(
         req.params.id, 
         req.body,
