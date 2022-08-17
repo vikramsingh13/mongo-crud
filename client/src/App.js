@@ -45,7 +45,7 @@ const App = () => {
     //updates list with updateTasksList
     const deleteTaskAndUpdateList = async(id) => {
         await deleteTask(id);
-        await updateTasksList();
+        await updateTasksList()
     }
 
     return (

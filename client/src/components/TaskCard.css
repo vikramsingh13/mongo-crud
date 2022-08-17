@@ -1,15 +1,31 @@
 .task-card{
+    min-width: 80%;
+    max-width: 80%;
+    margin: 10px 10%;
+}
+.task-card-wrapper{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 2fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-        ". . . controls"
+        ". title title controls"
         "info info info info"
         "edit edit edit edit";
     
     border: 2px solid white;
-    margin: 10px 15%;
     border-radius: 5px;
+}
+
+.task-card-wrapper > *{
+    margin: 10px;
+}
+
+.task-title{
+    grid-area: title;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .task-info{
@@ -19,6 +35,9 @@
     justify-content: center;
     flex-direction: column;
     line-height: 1rem;
+}
+
+.task-info > * {
     margin: 10px;
 }
 
@@ -27,7 +46,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px;
 }
 
 .task-controls> *{

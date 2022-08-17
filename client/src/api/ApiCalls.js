@@ -1,9 +1,15 @@
 import axios from 'axios';
 
-const API_ENDPOINT = process.env.API_ENDPOINT ? process.env.API_ENDPOINT : "https://mongo-crud.vikramsingh.tech/api/tasks/";
+let API_ENDPOINT = "";
+if(process.env.REACT_APP_NODE_ENV === "development"){
+    API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT ? process.env.REACT_APP_API_ENDPOINT : "https://mongo-crud.vikramsingh.tech/api/tasks/";
+} else {
+    API_ENDPOINT = "https://mongo-crud.vikramsingh.tech/api/tasks/";
+}
 
 const getTasks = async() => {
     let taskList = null;
+    
     try{
         taskList = await axios.get(
             API_ENDPOINT, {
@@ -43,7 +49,7 @@ const deleteTask = async(id) => {
     try {
         await axios.delete(deleteTaskURI);
     }catch(err){
-        console.warn(`deleteTask error: ${err.message}`);
+        console.warn(`Axios deleteTask error: ${err.message}`);
     }
 }
 

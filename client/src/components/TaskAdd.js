@@ -18,9 +18,12 @@ const TaskAdd = (props) => {
                 placeholder='Add a task name'
                 onChange={(event) => setTaskName(event.target.value)}
                 value={taskName}
+                maxLength="20"
+                title="Required"
+                required
             />
             <button 
-                type="button"
+                type="submit"
                 onClick={()=>handleSubmit()}
             >
                 Add Task
