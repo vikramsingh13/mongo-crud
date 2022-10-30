@@ -1,6 +1,9 @@
 const asyncHandler = require('express-async-handler');
 const taskModel = require('../models/taskModel');
 
+//after model is updated
+//functions need to account for task body and due date
+
 //@desc Get tasks
 //@path GET /api/tasks
 //access PRIVATE
