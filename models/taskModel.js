@@ -7,12 +7,9 @@ const taskSchema = new mongoose.Schema({
     taskTitle: {
         type: String,
         required: [true, 'Please send a taskTitle.'],
-    }, taskDescription: {
-        type: String
-    }, taskDueDate: {
-        type: String,
-        format: 'date',
-    }
+    }, 
+    taskBody: String,
+    taskDueDate: String
 }, {
     timestamps: true,
 });

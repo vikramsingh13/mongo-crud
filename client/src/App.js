@@ -27,8 +27,8 @@ const App = () => {
     //takes string as taskTitle
     //calls addTask
     //updates list with updateTasksList
-    const addTaskAndUpdateList = async(taskTitle) => {
-        await addTask(taskTitle);
+    const addTaskAndUpdateList = async(taskTitle, taskBody) => {
+        await addTask(taskTitle, taskBody);
         await updateTasksList();
     }
 

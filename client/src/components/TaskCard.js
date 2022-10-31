@@ -10,7 +10,6 @@ const TaskCard = (props) => {
     const [editTitle, setEditTitle] = useState('');
     const [isEditVisible, setIsEditVisible] = useState(false);
     const [isComplete, setIsComplete] = useState(false);
-
     return (
         <div className='task-card'>
             <div className="task-card-wrapper">
@@ -18,8 +17,8 @@ const TaskCard = (props) => {
                         {props.task.taskTitle}
                     </div>
                 <div className={`task-info ${isComplete?"task-complete":""}`}>
-                    <div className='task-desc'>
-                        This is task description.
+                    <div className='task-body'>
+                        {props.task.taskBody}
                     </div>
                     <div className='task-due-date'>
                         This is due date.

@@ -16,14 +16,14 @@ const getTasks = asyncHandler(async (req, res) => {
 //@path POST /api/tasks
 //access PRIVATE
 const setTask = asyncHandler(async (req, res) => {
-    if(!req.body){
+    if(!req.body.taskTitle){
         res.status(400);
         throw new Error('Please send a taskTitle.');
     }
-
     const task = await taskModel.create(
         {
-            taskTitle: req.body.taskTitle
+            taskTitle: req.body.taskTitle,
+            taskBody: req.body.taskBody
         }
     );
 

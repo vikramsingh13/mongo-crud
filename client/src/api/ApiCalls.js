@@ -19,14 +19,15 @@ const getTasks = async() => {
     }catch (err){
         console.warn(`Axios getTasks error: ${err.message}`);
     }
-
     return taskList;
 }
 
-const addTask = async(taskTitle) => {
+const addTask = async(taskTitle, taskBody) => {
+    console.log("api : " + taskBody);
     try{
         await axios.post(API_ENDPOINT, {
             taskTitle: taskTitle,
+            taskBody: taskBody
         });
     }catch(err){
         console.warn(`Axios addTask error: ${err}`);
