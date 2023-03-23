@@ -35,8 +35,8 @@ const App = () => {
     //takes string as id, string as taskTitle
     //calls updateTask
     //updates list with updateTasksList
-    const updateTaskAndUpdateList = async(id, taskTitle) => {
-        await updateTask(id, taskTitle);
+    const updateTaskAndUpdateList = async(id, taskTitle, taskBody, isComplete) => {
+        await updateTask(id, taskTitle, taskBody, isComplete);
         await updateTasksList();
     }
 

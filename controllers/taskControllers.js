@@ -23,7 +23,8 @@ const setTask = asyncHandler(async (req, res) => {
     const task = await taskModel.create(
         {
             taskTitle: req.body.taskTitle,
-            taskBody: req.body.taskBody
+            taskBody: req.body.taskBody ? req.body.taskBody : "",
+            isComplete: false,
         }
     );
 
@@ -37,7 +38,7 @@ const updateTask = asyncHandler(async (req, res) => {
     const task = await taskModel.findById(req.params.id);
     if(!task){
         res.status(400);
-        throw new Error('Task not found.');
+        throw new Error(`Task ${req.params.id} not found.`);
     }else if(!req.body.taskTitle){
         res.status(400);
         throw new Error('Please send a taskTitle');

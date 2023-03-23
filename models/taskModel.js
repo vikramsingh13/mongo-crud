@@ -9,7 +9,8 @@ const taskSchema = new mongoose.Schema({
         required: [true, 'Please send a taskTitle.'],
     }, 
     taskBody: String,
-    taskDueDate: String
+    taskDueDate: String,
+    isComplete: Boolean,
 }, {
     timestamps: true,
 });

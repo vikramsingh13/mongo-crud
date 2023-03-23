@@ -23,22 +23,25 @@ const getTasks = async() => {
 }
 
 const addTask = async(taskTitle, taskBody) => {
-    console.log("api : " + taskBody);
     try{
         await axios.post(API_ENDPOINT, {
             taskTitle: taskTitle,
-            taskBody: taskBody
+            taskBody: taskBody,
+            isComplete: false,
         });
     }catch(err){
         console.warn(`Axios addTask error: ${err}`);
     }
 }
 
-const updateTask = async(id, taskTitle) => {
+const updateTask = async(id, taskTitle, taskBody, isComplete) => {
     const updateTaskURI = API_ENDPOINT + id;
+    console.log('updateTask : ', updateTaskURI);
     try {
         await axios.put(updateTaskURI,{
             taskTitle: taskTitle,
+            taskBody: taskBody,
+            isComplete: isComplete,
         });
     } catch(err){
         console.warn(`Axios updateTask error: ${err.message}`);

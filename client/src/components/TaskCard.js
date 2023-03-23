@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './TaskCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -8,15 +8,25 @@ library.add(faCircleCheck, faCircleXmark, faPen);
 
 const TaskCard = (props) => {
     const [editTitle, setEditTitle] = useState('');
+    const [editDesc, setEditDesc] = useState('');
     const [isEditVisible, setIsEditVisible] = useState(false);
     const [isComplete, setIsComplete] = useState(false);
+    const [taskId, setTaskId] = useState();
+
+    useEffect(() => {
+        setEditTitle(props.task.taskTitle);
+        setEditDesc(props.task.taskBody);
+        setIsComplete(props.task.isComplete);
+        setTaskId(props.task._id);
+    },[]);
+
     return (
         <div className='task-card'>
             <div className="task-card-wrapper">
-                    <div className={`task-title ${isComplete?"task-complete":""}`}>
+                    <div className={`task-title ${props.task.isComplete?"task-complete":""}`}>
                         {props.task.taskTitle}
                     </div>
-                <div className={`task-info ${isComplete?"task-complete":""}`}>
+                <div className={`task-info ${props.task.isComplete?"task-complete":""}`}>
                     <div className='task-body'>
                         {props.task.taskBody}
                     </div>
@@ -36,7 +46,10 @@ const TaskCard = (props) => {
                         className='task-controls-complete'
                         icon="circle-check"
                         type="button"
-                        onClick={()=>setIsComplete(!isComplete)}
+                        onClick={(event)=>{
+                            props.updateTask(taskId, editTitle, editDesc, !isComplete);
+                            setIsComplete(!isComplete);
+                        }}
                     />
                     <FontAwesomeIcon
                         className='task-controls-delete'
@@ -52,7 +65,7 @@ const TaskCard = (props) => {
                 >
                     <label className='task-edit-title-label'>New title: </label>
                     <input 
-                        className='task-edit-title' 
+                        className='task-edit-title'
                         placeholder='Enter new title'
                         maxLength="20"
                         required
@@ -61,19 +74,21 @@ const TaskCard = (props) => {
                         onChange={(event)=>setEditTitle(event.target.value)}
                     />
                     <label className='task-edit-desc-label'>New description: </label> 
-                    <div className='task-edit-desc'>
-                        This is task description.
-                    </div>
+                    <textarea 
+                        className='task-edit-desc'
+                        placeholder='Enter new description'
+                        maxLength="200"
+                        value={editDesc}
+                        onChange={(event)=>setEditDesc(event.target.value)}
+                    />
                     <label className='task-edit-due-date-label'>New due date: </label>
                     <div className='task-edit-due-date'>
                         This is due date.
                     </div>
                     <button 
                         type="submit"
-                        id={props.task._id}
                         onClick={(event)=>{
-                            props.updateTask(event.target.id, editTitle);
-                            setEditTitle("");
+                            props.updateTask(taskId, editTitle, editDesc, isComplete);
                             setIsEditVisible(false);
                         }}
                     >
